@@ -2,7 +2,7 @@ import esphome.codegen as cg
 import esphome.config_validation as cv
 from esphome.components import i2c, sensor
 from esphome.const import CONF_ID,\
-    CONF_BATTERY_LEVEL, CONF_BATTERY_VOLTAGE, UNIT_VOLT, ICON_EMPTY, UNIT_PERCENT, UNIT_EMPTY
+    CONF_BATTERY_LEVEL, CONF_BATTERY_VOLTAGE, DEVICE_CLASS_BATTERY, DEVICE_CLASS_VOLTAGE, UNIT_VOLT, ICON_EMPTY, UNIT_PERCENT, UNIT_EMPTY
 
 DEPENDENCIES = ['i2c']
 
@@ -15,17 +15,17 @@ LC709203FComponent = lc709203f_ns.class_('LC709203FComponent', cg.PollingCompone
 CONFIG_SCHEMA = cv.Schema({
     cv.GenerateID(): cv.declare_id(LC709203FComponent),
     cv.Optional(CONF_BATTERY_VOLTAGE):
-        sensor.sensor_schema(UNIT_VOLT, ICON_EMPTY, 2).extend({
+        sensor.sensor_schema(unit_of_measurement=UNIT_VOLT, accuracy_decimals=2, device_class=DEVICE_CLASS_VOLTAGE).extend({
         }),
     cv.Optional(CONF_BATTERY_LEVEL):
-        sensor.sensor_schema(UNIT_PERCENT, ICON_EMPTY, 1).extend({
+        sensor.sensor_schema(unit_of_measurement=UNIT_PERCENT, accuracy_decimals=0, device_class=DEVICE_CLASS_BATTERY).extend({
         }),
     cv.Optional('cell_charge'):
-        sensor.sensor_schema(UNIT_PERCENT, ICON_EMPTY, 0).extend({
+        sensor.sensor_schema(unit_of_measurement=UNIT_PERCENT, accuracy_decimals=0, device_class=DEVICE_CLASS_BATTERY).extend({
         }),
     #cv.Optional('icversion'): cv.uint16_t,
     cv.Optional('icversion'):
-        sensor.sensor_schema(UNIT_EMPTY, ICON_EMPTY, 0).extend({
+        sensor.sensor_schema(unit_of_measurement=UNIT_EMPTY, icon=ICON_EMPTY).extend({
         }),
 
 }).extend(cv.polling_component_schema('60s')).extend(i2c.i2c_device_schema(0x77))
