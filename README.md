@@ -1,3 +1,20 @@
+Organized files into folders, so that you can simply add a few lines to your YAML file and ESPHome will automatically download the files from this repo and use them when compiling your firmware. Tested with ESPHome 2023.8.2
+
+Add this towards the top of your YAML file:
+```
+external_components:
+  - source:
+      type: git
+      url: https://github.com/gfalgiano/lc709203f
+    components: [ lc709203f ]
+```
+    
+In addition to the instructions below, you may need to add this to your YAML file:
+```
+i2c:
+  id: bus_a
+```
+  
 ## initial support for lc709203f on  ESP32_Bat_Pro 
  This is an attempt to add wrappers to the code provided by EzSBC in https://github.com/EzSBC/ESP32_Bat_Pro by
 adding required functions and renaming some subroutines. These were modelled on the esphome ads1115 and ina219 components
