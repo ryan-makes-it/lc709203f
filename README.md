@@ -1,3 +1,5 @@
+20240207 - Changed hard-coded battery type and capacity values to match the 18650 cell I'm using.
+
 Organized files into folders, so that you can simply add a few lines to your YAML file and ESPHome will automatically download the files from this repo and use them when compiling your firmware. Tested with ESPHome 2023.8.2
 
 Add this towards the top of your YAML file:
