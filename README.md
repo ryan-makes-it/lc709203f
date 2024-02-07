@@ -7,7 +7,7 @@ Add this towards the top of your YAML file:
 external_components:
   - source:
       type: git
-      url: https://github.com/gfalgiano/lc709203f
+      url: https://github.com/ryan-makes-it/lc709203f
     components: [ lc709203f ]
 ```
     
